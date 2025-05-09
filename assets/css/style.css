@@ -1,0 +1,148 @@
+/* === ENHANCEMENTS ADDED TO EXISTING CODE === */
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Improve readability on all text elements */
+body, h1, h2, h3, p, a, button {
+    letter-spacing: 0.3px;
+}
+
+/* Highlight links on focus for accessibility */
+a:focus,
+.btn:focus {
+    outline: 2px solid var(--primary-pink);
+    outline-offset: 3px;
+}
+
+/* Header Enhancement */
+header h1 {
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+/* Navigation underline on active page */
+nav ul li a.active {
+    background-color: rgba(255, 255, 255, 0.25);
+    font-weight: bold;
+}
+
+/* Animation Enhancements */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Card Gradient Border on Hover */
+.product-card:hover {
+    border: 2px solid transparent;
+    background-image: linear-gradient(#fff, #fff), radial-gradient(circle at top left, var(--light-pink), var(--secondary-purple));
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+/* Refined product info spacing */
+.product-card .product-info {
+    padding: 1rem 1.2rem;
+}
+
+/* Improve product title readability */
+.product-card h3 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+}
+
+/* Add subtle gradient hover for add-to-cart style buttons */
+.btn-action {
+    background: linear-gradient(to right, var(--light-purple), var(--primary-purple));
+    color: white;
+    border: none;
+}
+
+.btn-action:hover {
+    background: linear-gradient(to right, var(--secondary-pink), var(--primary-pink));
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+    transform: scale(1.05);
+}
+
+/* Improve Cart Table Look */
+.cart-table td, .cart-table th {
+    border: 1px solid #eae2f8;
+    text-align: center;
+}
+
+.cart-table tr:hover {
+    background-color: #fdf6ff;
+}
+
+/* Mobile Grid Optimization */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+}
+
+/* Add back to top button (optional future enhancement) */
+#backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary-purple);
+    color: white;
+    border-radius: 50%;
+    padding: 0.7rem 0.9rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(106, 13, 173, 0.2);
+    z-index: 1001;
+    display: none;
+}
+
+#backToTop.show {
+    display: block;
+}
