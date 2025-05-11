@@ -22,11 +22,13 @@ if (!$product) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($product['name']); ?> - Online Shop</title>
     <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/product_details.css">
+
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Online Shop</h1>
+            <h1>Sara's Pretty Picks</h1>
             <nav>
                 <ul>
                     <li><a href="index.php">Home</a></li>
