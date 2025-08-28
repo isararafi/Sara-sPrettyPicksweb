@@ -21,6 +21,11 @@ function isUserLoggedIn() {
     return isset($_SESSION['user_id']);
 }
 
+// Alias for is_logged_in() function (for compatibility)
+function is_logged_in() {
+    return isset($_SESSION['user_id']);
+}
+
 // Redirect if user not logged in (for customer side)
 function loginRequired() {
     if (!isUserLoggedIn()) {

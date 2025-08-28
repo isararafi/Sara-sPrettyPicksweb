@@ -2,6 +2,12 @@
 require_once 'includes/auth.php';
 require_once 'includes/functions.php';
 
+// Ensure user is logged in
+if (!is_logged_in()) {
+    header("Location: login.php");
+    exit();
+}
+
 // Handle remove from favorites
 if (isset($_GET['remove'])) {
     $stmt = $pdo->prepare("DELETE FROM favorites WHERE id = ? AND user_id = ?");
@@ -37,6 +43,7 @@ $favorite_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <li><a href="cart.php">Cart</a></li>
                     <li><a href="favorites.php">Favorites</a></li>
                     <?php if (is_logged_in()): ?>
+                        <li><a href="my_orders.php">My Orders</a></li>
                         <li><a href="logout.php">Logout</a></li>
                     <?php else: ?>
                         <li><a href="login.php">Login</a></li>

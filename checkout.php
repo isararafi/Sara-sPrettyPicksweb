@@ -2,6 +2,12 @@
 require_once 'includes/auth.php';
 require_once 'includes/functions.php';
 
+// Ensure user is logged in
+if (!is_logged_in()) {
+    header("Location: login.php");
+    exit();
+}
+
 // Get cart items
 $stmt = $pdo->prepare("
     SELECT p.id as product_id, p.name, p.price, c.quantity 
@@ -61,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Online Shop</title>
     <link rel="stylesheet" href="assets/css/checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
@@ -74,6 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <li><a href="cart.php">Cart</a></li>
                     <li><a href="favorites.php">Favorites</a></li>
                     <?php if (is_logged_in()): ?>
+                        <li><a href="my_orders.php">My Orders</a></li>
                         <li><a href="logout.php">Logout</a></li>
                     <?php else: ?>
                         <li><a href="login.php">Login</a></li>
@@ -124,18 +132,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <input type="text" id="zip" name="zip" required>
                 </div>
 
-                <h3>Payment Information</h3>
+                <h3>Payment Method</h3>
                 <div class="form-group">
-                    <label for="card">Card Number</label>
-                    <input type="text" id="card" name="card" required>
-                </div>
-                <div class="form-group">
-                    <label for="expiry">Expiry Date</label>
-                    <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required>
-                </div>
-                <div class="form-group">
-                    <label for="cvv">CVV</label>
-                    <input type="text" id="cvv" name="cvv" required>
+                    <div class="payment-options">
+                        <div class="payment-option">
+                            <input type="checkbox" name="payment_methods[]" value="cod" checked>
+                            <label class="payment-label">
+                                <i class="fas fa-money-bill-wave"></i>
+                                Cash on Delivery (COD)
+                            </label>
+                        </div>
+                        <div class="payment-option">
+                            <input type="checkbox" name="payment_methods[]" value="card">
+                            <label class="payment-label">
+                                <i class="fas fa-credit-card"></i>
+                                Credit/Debit Card
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
                 <button type="submit" class="btn">Place Order</button>

@@ -1,6 +1,13 @@
 <?php
 require_once 'includes/auth.php';
+require_once 'includes/functions.php';
 require_once 'config/db.php';
+
+// Ensure user is logged in
+if (!is_logged_in()) {
+    header("Location: login.php");
+    exit();
+}
 
 if (!isset($_GET['id'])) {
     header("Location: products.php");

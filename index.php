@@ -24,6 +24,7 @@ $products = get_products(8); // Get first 8 products
                     <li><a href="cart.php">Cart</a></li>
                     <li><a href="favorites.php">Favorites</a></li>
                     <?php if (is_logged_in()): ?>
+                        <li><a href="my_orders.php">My Orders</a></li>
                         <li><a href="logout.php">Logout</a></li>
                     <?php else: ?>
                         <li><a href="login.php">Login</a></li>
